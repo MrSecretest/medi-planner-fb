@@ -26,7 +26,7 @@
     border-radius: 15px;
 }
 
-.analyzes-container li {
+.analyze-centered {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -166,4 +166,18 @@
 
 .dropdown:hover{
     background-color: var(--selectableBorder);
+}
+
+
+.popup-note {
+    position: absolute;
+    background-color:  var(--lighterBG);
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px var(--selectableBorder) solid;
+    border-radius: 8px ;
+    width: 500px;
+    height: 350px;
+    z-index: 1000;
 }

@@ -1,32 +1,47 @@
 import PropTypes from "prop-types";
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
+import { useState } from "react";
+import Modal from "../Modal/modal";
+import {motion , AnimatePresence } from "motion/react";
+export default function Analyze({ name, time, note, onAfterClick }) {
+    const [showNote, setShowNote] = useState(false);
 
+    const close = () => setShowNote(false);
+    const open = () => setShowNote(true);
 
-
-
-export default function Analyze({ name, time, note, onBeforeClick, onAfterClick }){
-    return(
+    return (
+        <>
             <div className="analyze">
                 <div className="analyze-before">
-                    <StickyNote2Icon onClick={onBeforeClick}></StickyNote2Icon>
+                    <StickyNote2Icon onClick={() => (showNote ? close() : open())} /> 
                 </div>
-                    <div className="analyze-content">{`${name} at ${time}`}</div>
-                    <div className="analyze-after" onClick={onAfterClick}></div>
-                </div>
-    )
+                <div className="analyze-content">{`${name} at ${time}`}</div>
+                <div className="analyze-after" onClick={onAfterClick}></div>
+            </div>
+            <AnimatePresence
+                initial={false}
+                mode='wait'
+                onExitComplete={()=>null}
+                >
+                {showNote && 
+                <motion.div key="modal" exit={{ opacity: 0 }} >
+                    <Modal modalOpen={showNote} handleClose={close} text={note} />
+                </motion.div>}
+            </AnimatePresence>
+
+        </>
+    );
 }
 
 Analyze.defaultProps = {
     name: "Default Name",
     time: "00:00",
-    onBeforeClick: () => {},
     onAfterClick: () => {},
 };
 
 Analyze.propTypes = {
     name: PropTypes.string.isRequired,
-    beforeType: PropTypes.bool,
     time: PropTypes.string.isRequired,
-    onBeforeClick: PropTypes.func,
+    note: PropTypes.string.isRequired,  // Ensure note is required and passed
     onAfterClick: PropTypes.func,
 };

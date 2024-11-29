@@ -4,8 +4,8 @@ import Analyze from "../../components/analyze/analyze";
 import "../../styles/analyzes.css";
 import { db, ref, set, get , remove} from "../../firebase.js";
 import { useNavigate } from "react-router-dom";
-import CalendarButton from "../calendar/calendarButton.jsx";
-import SyncIcon from '@mui/icons-material/Sync';
+import {motion, AnimatePresence } from "motion/react";
+
 export default function Analyzes() {
   const [note, setNote] = useState("");
   const [dropdownValue, setDropdownValue] = useState("option1");
@@ -107,24 +107,32 @@ export default function Analyzes() {
       </p>
       
       <div className="analyzes-container">
-        {notesList.length === 0 ? (
-          <div/>
-        ):(
-          <ul>
-          {notesList.map((analyze) => (
-            <li key={analyze.id}>
-            <p style={{textAlign:"center", padding:"2px", color:"var(--selectableBorder)"}}>{analyze.date}</p>
+          <div className="analyze-centered">
+          <AnimatePresence>
+            {notesList.map((analyze) => (
+                <motion.div
+                layout
+                key={analyze.id}
+                initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                transition={{ duration: 0.05 }}
+              >
+                <p style={{ textAlign: "center", padding: "2px", color: "var(--selectableBorder)" }}>
+                  {analyze.date}
+                </p>  
 
-            <Analyze
-              name={analyze.dropdownValue}
-              time={analyze.time}
-              note={analyze.note}
-              onAfterClick={() => deleteAnalyze(analyze.id)} // Pass the analyze ID to delete
-            />
-            </li>
-          ))}
-        </ul>
-        )}
+                <Analyze
+                  name={analyze.dropdownValue}
+                  time={analyze.time}
+                  note={analyze.note}
+                  onAfterClick={() => deleteAnalyze(analyze.id)} // Pass the analyze ID to delete
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+
       </div>
       <div className="note-container">
         <p style={{ fontSize: "larger", padding: "10px", width: "100%", textAlign: "center", borderBottom: "1px solid var(--selectableBorder)" }}>
