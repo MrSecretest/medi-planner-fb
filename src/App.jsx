@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./media/logo.png";
 import logoBlue from "./media/logo-blue.png";
 import "./styles/main.css";
@@ -7,6 +7,10 @@ import LogIn from "./components/auth/log_in";
 import SignUp from "./components/auth/sign_up";
 
 export default function Main() {
+  useEffect(()=>{
+    localStorage.removeItem("currentDate");
+  }, [Main])
+
   const [authView, setAuthView] = useState(null);
 
   const handleSignUpClick = () => {

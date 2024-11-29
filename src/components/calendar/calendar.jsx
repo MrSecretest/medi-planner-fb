@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/calendar.css"
 import CalendarButton from "./calendarButton";
-import Button from "../button/button";
 export default function Calendar()
 {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -14,7 +13,7 @@ export default function Calendar()
     {
         return new Date(year, month+1, 0).getDate()
     }
-
+    
     const changeMonth = (direction) => 
     {
         setCurrentDate(prev =>{
@@ -25,15 +24,19 @@ export default function Calendar()
     }
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth(); // 0 = January
-
     const daysInMonth = getDaysInMonth(year, month);
 
     const handleDayClick = (day) => {
         setSelectedDay(day);
-        console.log(`Selected date: ${day} ${monthNames[month]} ${year}`);
-    };
-
-
+        localStorage.setItem("currentDate", [day, month+1, year]);
+        console.log(`Selected date: ${day} ${monthNames[month+1]} ${year}`);
+        };
+    
+    useEffect((day)=>{
+        localStorage.setItem("currentDate", [1, month+1, year]);
+        console.log(`Selected date: ${1} ${monthNames[month+1]} ${year}`);
+    }, [Calendar])
+    
     return(
         <>
             <div className="calendar-box">

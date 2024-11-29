@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
-import fileAdd from "../../media/file.png"
-import fileExist from "../../media/file_exist.png"
+import StickyNote2Icon from '@mui/icons-material/StickyNote2';
 
 
-export default function Analyze({ name, time, beforeType, onBeforeClick, onAfterClick }){
+
+
+export default function Analyze({ name, time, note, onBeforeClick, onAfterClick }){
     return(
             <div className="analyze">
                 <div className="analyze-before">
-                    <img src={beforeType ? fileExist : fileAdd}  alt="img" onClick={onBeforeClick}></img>
+                    <StickyNote2Icon onClick={onBeforeClick}></StickyNote2Icon>
                 </div>
                     <div className="analyze-content">{`${name} at ${time}`}</div>
                     <div className="analyze-after" onClick={onAfterClick}></div>
@@ -17,7 +18,6 @@ export default function Analyze({ name, time, beforeType, onBeforeClick, onAfter
 
 Analyze.defaultProps = {
     name: "Default Name",
-    beforeType: false,
     time: "00:00",
     onBeforeClick: () => {},
     onAfterClick: () => {},

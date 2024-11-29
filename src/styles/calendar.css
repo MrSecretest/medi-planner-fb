@@ -1,12 +1,13 @@
 
 .calendar-box
 {
-    width: 537px;
+    width: fit-content;
     height: 500px;
     background-color: var(--calendarBG);
     border-radius: 15px;
     border: 1px solid var(--selectableBorder);
     box-shadow: #000000e1 0px 0px 15px;
+    margin-top: 15px;
 
 }
 .date-part
@@ -39,7 +40,7 @@
     justify-content: center;
     align-items: center;
     font-size: larger;
-    
+    transition: all 0.1s ease;
     -webkit-user-select: none;     
     -moz-user-select: none;
     -ms-user-select: none;
@@ -49,8 +50,12 @@
     background-color: var(--cellsborder);
 }
 
+.cells:active{
+    background-color: #627abe;
+}
+
 .cells.selected{
-    background-color: #2e4954;
+    background-color: #252e46;
 }
 
 .calendar-button
@@ -60,9 +65,18 @@
     border-radius: 15px;
     width: 45px;
     height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s ease;
 }
 .calendar-button:hover
 {
     background-color:var(--cellsborder);
+
+}
+.calendar-button:active
+{
+    background-color:#627abe;
 
 }

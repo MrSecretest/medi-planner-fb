@@ -1,7 +1,7 @@
 .analyzes-setter
 {
-    width: 600px;
-    height: 445px;
+    width: fit-content;
+    height: 800px;
     background-color: var(--calendarBG);
     border-radius: 15px;
     border: 1px solid var(--selectableBorder);
@@ -10,14 +10,30 @@
     align-items: center;
     flex-direction: column;
     box-shadow: #000000e1 0px 0px 15px;
+    overflow: clip;
 }
 
 .analyzes-container {
     width: 425px;
-    height: 215px;
+    height: 520px;
     display: block;
+    border-radius: 15px;
+    background-color: var(--cells);
+    border: 1px solid var(--cellsborder);
+    margin: 15px;
     overflow-y: scroll;
+    background-color: #171717e1;
+    border-radius: 15px;
 }
+
+.analyzes-container li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
 
 
 .analyze {

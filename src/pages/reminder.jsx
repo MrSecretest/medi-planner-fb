@@ -18,7 +18,7 @@ export default function Reminder() {
           }
       
           const checkUser = async () => {
-            const userDocRef = doc(db, "users", userId);  // Reference to the user's document
+            const userDocRef = doc(db, "users", userId);
             const userDocSnapshot = await getDoc(userDocRef);
       
             if (!userDocSnapshot.exists()) {

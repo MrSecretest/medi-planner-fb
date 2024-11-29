@@ -12,6 +12,15 @@ export default function Log_in({ handleCloseAuthView }) {
   const [error, setError] = useState('');
   const navigate = useNavigate();  // Hook for navigation
 
+  const userId = localStorage.getItem("userId");
+
+  useEffect (() =>
+  {
+    if (userId)
+    {
+      navigate("/reminder");
+    }
+  }, [userId])
 
 
   const handleLogIn = async () => {
