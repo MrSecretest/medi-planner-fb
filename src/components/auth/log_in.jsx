@@ -12,21 +12,13 @@ export default function Log_in({ handleCloseAuthView }) {
   const [error, setError] = useState('');
   const navigate = useNavigate();  // Hook for navigation
 
-  useEffect(() => {
-    // Check if the user is already signed in when the component mounts
-    // If they are, redirect to the reminder page
-    const user = localStorage.getItem("user");  // or use Firebase auth
-    if (user) {
-      navigate("/reminder");
-    }
-  }, [navigate]);
+
 
   const handleLogIn = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, pass);
-      alert('Logged in successfully!');
-      const user = { email };
-      localStorage.setItem('user', JSON.stringify(user));
+      const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+      const user = userCredential.user;
+      localStorage.setItem('userId', user.uid);
       handleCloseAuthView();
       navigate("/reminder");
     } catch (err) {
