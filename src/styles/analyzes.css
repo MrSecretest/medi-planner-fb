@@ -1,0 +1,153 @@
+.analyzes-setter
+{
+    width: 600px;
+    height: 445px;
+    background-color: var(--calendarBG);
+    border-radius: 15px;
+    border: 1px solid var(--selectableBorder);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: #000000e1 0px 0px 15px;
+}
+
+.analyzes-container {
+    width: 425px;
+    height: 215px;
+    display: block;
+    overflow-y: scroll;
+}
+
+
+.analyze {
+    width: 360px;
+    height: 55px;
+    text-align: center;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F1F1F;
+    border: 1px solid #272727;
+    border-radius: 15px;
+    font-size: larger;
+    margin: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.analyze-before,
+.analyze-after {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3b3b3b;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.1s ease;
+    position: absolute;
+}
+.analyze-before img{
+    width: 30px;
+}
+.analyze-before {
+    left: 0;
+    border-radius: 15px 0px 0px 15px;
+}
+
+.analyze-after {
+    right: 0;
+    border-radius: 0px 15px 15px 0px;
+    background-image: url('../media/trash.png');
+}
+
+.analyze-content {
+    flex: 1;
+}
+
+.analyze-after:hover {
+    background-color: rgb(120, 66, 66);
+}
+
+.analyze-before:hover {
+    background-color: #5370be;
+}
+
+
+.note-container
+{
+    width: 100%;
+    border-top: 1px solid var(--selectableBorder);
+    border-bottom: 1px solid var(--selectableBorder);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.note
+{
+    width: 505px;
+    height: 36px;
+    background-color: var(--cells);
+    border-radius: 15px;
+    border: 1px solid var(--selectableBorder);
+    padding: 15px;
+    margin: 15px;
+    font-size: medium;
+    font-style: italic;
+    font-weight: 100;
+    color: #808080;
+}
+
+
+.bottom-container
+{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    gap:15px;
+    padding: 15px;
+    align-items: center;
+}
+
+.time-setter {
+    width: 105px;
+    height: 40px;
+    border: 1px solid var(--selectableBorder);
+    border-radius: 15px;
+    background-color: var(--lighterBG);
+    color: #808080;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.time-setter:hover
+{
+    color: #a8a8a8;
+}
+
+.dropdown
+{
+    width: 225px;
+    height: 50px;
+    border-radius: 15px;
+    border: 1px solid var(--selectableBorder);
+    background-color:  var(--lighterBG);
+    font-size: medium;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown:hover{
+    background-color: var(--selectableBorder);
+}

@@ -1,0 +1,68 @@
+
+.calendar-box
+{
+    width: 537px;
+    height: 500px;
+    background-color: var(--calendarBG);
+    border-radius: 15px;
+    border: 1px solid var(--selectableBorder);
+    box-shadow: #000000e1 0px 0px 15px;
+
+}
+.date-part
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 50px 15px 50px;
+    text-align: center;
+    font-size: larger;
+    border-bottom: 1px var(--selectableBorder) solid;
+}
+
+.cells-part {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    text-align: center;
+    padding: 15px;
+}
+
+.cells
+{
+    width: 64px;
+    height: 64px;
+    border-radius: 15px;
+    background-color: var(--cells);
+    border: 1px solid var(--cellsborder);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    
+    -webkit-user-select: none;     
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.cells:hover{
+    background-color: var(--cellsborder);
+}
+
+.cells.selected{
+    background-color: #2e4954;
+}
+
+.calendar-button
+{
+    background-color: var(--cells);
+    border: 1px solid var(--cellsborder);
+    border-radius: 15px;
+    width: 45px;
+    height: 45px;
+}
+.calendar-button:hover
+{
+    background-color:var(--cellsborder);
+
+}
