@@ -10,22 +10,25 @@ export default function Modal({ handleClose, text }) {
 
     return (
         <Backdrop onClick={handleClose}>
-            <motion.div
-                initial={{ opacity: 0, scale: 0.8, y: -10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                transition={{ duration: 0.05 }}
-                layout
-                onClick={(e) => e.stopPropagation()}
-                className="modal orange-gradient"
+            <motion.div className="modal"
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            exit={{ opacity: 0, }}
+            transition={{ duration: 0.1 }}
+            >
+            <div
                 
+                onClick={(e) => e.stopPropagation()}
+                className="modal-top"
             >
                 {text}
+            </div>
+            <div className="modal-bottom">
                 <CalendarButton onClick={handleClose}>
                     <CloseIcon/>
                 </CalendarButton>
+            </div>
             </motion.div>
-            
         </Backdrop>
     );
 }

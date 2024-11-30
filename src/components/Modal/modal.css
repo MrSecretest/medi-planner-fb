@@ -1,13 +1,26 @@
 .modal{
-    width: clamp(50%, 700px, 90%);
+    width: 630px    ;
     height: min(50%, 300px);
-
+    border: 1px #393939 solid;
     margin:auto;
-    padding: 15px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--calendarBG);
     justify-content: space-between;
+}
+
+.modal-top{
+    height: 95%;
+    padding: 15px;
+}
+
+.modal-bottom{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    border-top: 1px #393939 solid;
+    padding: 5px 0px 5px 0px;
 }

@@ -8,12 +8,63 @@ import {motion, AnimatePresence } from "motion/react";
 
 export default function Analyzes() {
   const [note, setNote] = useState("");
-  const [dropdownValue, setDropdownValue] = useState("option1");
+  const [dropdownValue, setDropdownValue] = useState("  ");
   const [time, setTime] = useState("");
   const navigate = useNavigate();
   const [notesList, setNotesList] = useState([]);
 
-
+  const age18_25Tests = [
+    "Physical Exam", 
+    "CBC", 
+    "Blood Glucose", 
+    "Lipid Profile", 
+    "Dental Check-up", 
+    "Eye Exam", 
+    "STI Screening", 
+    "Pap Smear (Women)", 
+    "Skin Check", 
+    "Vaccinations (HPV, Tdap)"
+  ];
+  const age25_30Tests = [
+    "Physical Exam", 
+    "CBC", 
+    "Blood Glucose", 
+    "Lipid Profile", 
+    "Thyroid Test", 
+    "STI Screening", 
+    "Pap Smear", 
+    "Mental Health", 
+    "Bone Health", 
+    "Lifestyle Assessment"
+  ];
+  const age30_45Tests = [
+    "Physical Exam", 
+    "Lipid Profile", 
+    "Blood Glucose", 
+    "Liver Function", 
+    "Cancer Screening (Mammogram/Prostate)", 
+    "Eye Exam", 
+    "Dental Check-up", 
+    "Pap Smear/HPV Test", 
+    "Mental Health", 
+    "Skin Cancer Screening"
+  ];
+  const age45_60Tests = [
+    "Physical Exam", 
+    "Lipid Profile", 
+    "Blood Glucose/HbA1c", 
+    "Kidney Function", 
+    "Colonoscopy", 
+    "Mammogram", 
+    "PSA Test (Men)", 
+    "Bone Density Scan", 
+    "Vision and Hearing Tests", 
+    "Vaccinations (Shingles/Flu/Pneumonia)", 
+    "Heart Screening (ECG/Stress Test)", 
+    "Mental Health", 
+    "Weight and Nutrition"
+  ];
+        
   const deleteAnalyze = async (analyzeId) => {
     const userId = localStorage.getItem("userId");
 
@@ -77,28 +128,25 @@ export default function Analyzes() {
     }
     try {
       const newNoteRef = ref(db, `users/${userId}/notes/${Date.now()}`);
-  
-      await set(newNoteRef, {
-        note,
-        dropdownValue,
-        time,
-        date: localStorage.getItem("currentDate"),
-      });
-      displayAnalyzes();
-      setNote("");
-      setDropdownValue("option1");
-      setTime("");
+      if (dropdownValue != "" && time != ""){
+        await set(newNoteRef, {
+          note,
+          dropdownValue,
+          time,
+          date: localStorage.getItem("currentDate"),
+        });
+        displayAnalyzes();
+        setNote("");
+        setDropdownValue("");
+        setTime("");
+      }
+      
     } catch (e) {
       console.error("Error adding document: ", e);
       alert(e);
     }
   };
 
-/*
-  <CalendarButton>
-   <SyncIcon/>
-  </CalendarButton>
-*/
 
   return (
     <div className="analyzes-setter">
@@ -119,9 +167,9 @@ export default function Analyzes() {
                 transition={{ duration: 0.05 }}
               >
                 <p style={{ textAlign: "center", padding: "2px", color: "var(--selectableBorder)" }}>
-                  {analyze.date}
-                </p>  
-
+                  {analyze.date.replaceAll(',', '.')}
+                </p>
+                
                 <Analyze
                   name={analyze.dropdownValue}
                   time={analyze.time}
@@ -152,10 +200,62 @@ export default function Analyzes() {
           value={dropdownValue}
           onChange={(e) => setDropdownValue(e.target.value)}
         >
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>                
+          <option value="">Choose your check-up</option>
+          <optgroup label="Age 18–25">
+            <option value="Physical Exam">Physical Exam</option>
+            <option value="CBC">CBC</option>
+            <option value="Blood Glucose">Blood Glucose</option>
+            <option value="Lipid Profile">Lipid Profile</option>
+            <option value="Dental Check-up">Dental Check-up</option>
+            <option value="Eye Exam">Eye Exam</option>
+            <option value="STI Screening">STI Screening</option>
+            <option value="Pap Smear (Women)">Pap Smear (Women)</option>
+            <option value="Skin Check">Skin Check</option>
+            <option value="Vaccinations (HPV, Tdap)">Vaccinations (HPV, Tdap)</option>
+          </optgroup>
+
+          <optgroup label="Age 25–30">
+            <option value="Physical Exam">Physical Exam</option>
+            <option value="CBC">CBC</option>
+            <option value="Blood Glucose">Blood Glucose</option>
+            <option value="Lipid Profile">Lipid Profile</option>
+            <option value="Thyroid Test">Thyroid Test</option>
+            <option value="STI Screening">STI Screening</option>
+            <option value="Pap Smear">Pap Smear</option>
+            <option value="Mental Health">Mental Health</option>
+            <option value="Bone Health">Bone Health</option>
+            <option value="Lifestyle Assessment">Lifestyle Assessment</option>
+          </optgroup>
+
+          <optgroup label="Age 30–45">
+            <option value="Physical Exam">Physical Exam</option>
+            <option value="Lipid Profile">Lipid Profile</option>
+            <option value="Blood Glucose">Blood Glucose</option>
+            <option value="Liver Function">Liver Function</option>
+            <option value="Cancer Screening (Mammogram/Prostate)">Cancer Screening (Mammogram/Prostate)</option>
+            <option value="Eye Exam">Eye Exam</option>
+            <option value="Dental Check-up">Dental Check-up</option>
+            <option value="Pap Smear/HPV Test">Pap Smear/HPV Test</option>
+            <option value="Mental Health">Mental Health</option>
+            <option value="Skin Cancer Screening">Skin Cancer Screening</option>
+          </optgroup>
+
+          <optgroup label="Age 45–60">
+            <option value="Physical Exam">Physical Exam</option>
+            <option value="Lipid Profile">Lipid Profile</option>
+            <option value="Blood Glucose/HbA1c">Blood Glucose/HbA1c</option>
+            <option value="Kidney Function">Kidney Function</option>
+            <option value="Colonoscopy">Colonoscopy</option>
+            <option value="Mammogram">Mammogram</option>
+            <option value="PSA Test (Men)">PSA Test (Men)</option>
+            <option value="Bone Density Scan">Bone Density Scan</option>
+            <option value="Vision and Hearing Tests">Vision and Hearing Tests</option>
+            <option value="Vaccinations (Shingles/Flu/Pneumonia)">Vaccinations (Shingles/Flu/Pneumonia)</option>
+            <option value="Heart Screening (ECG/Stress Test)">Heart Screening (ECG/Stress Test)</option>
+            <option value="Mental Health">Mental Health</option>
+            <option value="Weight and Nutrition">Weight and Nutrition</option>
+          </optgroup>
+
         </select>
         <input 
           className="time-setter" 

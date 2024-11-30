@@ -4,7 +4,7 @@ import Button from '../button/button';
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase'; 
-
+import { motion } from 'motion/react';
 export default function Sign_up({handleCloseAuthView, handleLogInClick})
 {
     const [email, setEmail] = useState('');
@@ -22,8 +22,12 @@ export default function Sign_up({handleCloseAuthView, handleLogInClick})
       };
     
     return(
-        <>
-         <div className='auth-bg'>
+         <motion.div 
+            className='auth-bg'
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            exit={{ opacity: 0}}
+            transition={{ duration: 0.1}}>
             <div className='auth-container'>
                 <img src={logo} width={100} alt="Logo" />
                 <form className='auth-fields'>
@@ -44,7 +48,6 @@ export default function Sign_up({handleCloseAuthView, handleLogInClick})
 
                 </form>
             </div>
-        </div>
-        </>
+        </motion.div>
     )
 }

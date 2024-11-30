@@ -5,7 +5,7 @@ import Analyzes from "../components/analyzesSetter/analyzesSetter";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import { getDoc, doc} from ".././firebase.js";
-
+import { motion } from "motion/react";
 
 export default function Reminder() {
     const navigate = useNavigate();
@@ -38,11 +38,19 @@ export default function Reminder() {
 
     return (
         <div className="box-container">
-            <div className="box-container-flex">
+            <motion.div className="box-container-flex"
+              initial={{y: -50}}
+              animate={{y:0 }}
+              transition={{
+                type: "spring",
+                damping: 10,
+                mass: 0.75,
+                stiffness: 100
+                }}>
                 <Calendar />
                 <Analyzes />
                 <Button type="alert" onClick={signOut}>Log out</Button>
-            </div>
+            </motion.div>
         </div>
     );
 }

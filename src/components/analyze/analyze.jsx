@@ -12,8 +12,8 @@ export default function Analyze({ name, time, note, onAfterClick }) {
     return (
         <>
             <div className="analyze">
-                <div className="analyze-before">
-                    <StickyNote2Icon onClick={() => (showNote ? close() : open())} /> 
+                <div className="analyze-before" onClick={() => (showNote ? close() : open())}>
+                    <StickyNote2Icon  /> 
                 </div>
                 <div className="analyze-content">{`${name} at ${time}`}</div>
                 <div className="analyze-after" onClick={onAfterClick}></div>
@@ -24,7 +24,7 @@ export default function Analyze({ name, time, note, onAfterClick }) {
                 onExitComplete={()=>null}
                 >
                 {showNote && 
-                <motion.div key="modal" exit={{ opacity: 0 }} >
+                <motion.div key="modal" exit={{ opacity: 0}}>
                     <Modal modalOpen={showNote} handleClose={close} text={note} />
                 </motion.div>}
             </AnimatePresence>

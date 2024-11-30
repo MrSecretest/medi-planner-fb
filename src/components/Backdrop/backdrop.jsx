@@ -5,9 +5,11 @@ export default function Backdrop({ children, onclick }) {
         <motion.div
             className="backdrop"
             onClick={onclick}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, backdropFilter: "blur(0px)"}}
+            animate={{ opacity: 1, backdropFilter: "blur(5px)"}}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)"}}
+            transition={{ duration: 0.1 }}
+            layout
         >
             {children}
         </motion.div>

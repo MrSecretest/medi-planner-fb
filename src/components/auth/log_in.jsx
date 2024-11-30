@@ -5,6 +5,7 @@ import { auth } from '../../firebase';
 import Button from '../button/button';
 import './auth.css';
 import logo from '../../media/logo.png';
+import { AnimatePresence, motion } from 'motion/react';
 
 export default function Log_in({ handleCloseAuthView }) {
   const [email, setEmail] = useState('');
@@ -36,36 +37,43 @@ export default function Log_in({ handleCloseAuthView }) {
   };
 
   return (
-    <div className="auth-bg">
-      <div className="auth-container">
-        <img src={logo} width={100} alt="Logo" />
-        <div className="auth-fields">
-          <p>Log In</p>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-          />
-          <div className="error-msg">
-            {error && <h1 className="error-msg-h1">{error}</h1>}
+    <motion.div 
+        initial={{ opacity: 0}}
+        animate={{ opacity: 1}}
+        exit={{ opacity: 0}}
+        transition={{ duration: 0.1}}
+        className="auth-bg">
+          
+        <div className="auth-container">
+          <img src={logo} width={100} alt="Logo" />
+          <div className="auth-fields">
+            <p>Log In</p>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+            />
+            <div className="error-msg">
+              {error && <h1 className="error-msg-h1">{error}</h1>}
+            </div>
+            <div className="buttons">
+              <Button type="secondary" onClick={handleLogIn}>
+                Proceed
+              </Button>
+              <Button type="red" onClick={handleCloseAuthView}>
+                Close
+              </Button>
+            </div>
           </div>
-          <div className="buttons">
-            <Button type="secondary" onClick={handleLogIn}>
-              Proceed
-            </Button>
-            <Button type="red" onClick={handleCloseAuthView}>
-              Close
-            </Button>
           </div>
-        </div>
-      </div>
-    </div>
+      
+    </motion.div>
   );
 }
