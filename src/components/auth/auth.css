@@ -15,7 +15,7 @@
 
 .auth-container
 {
-    width: 450px;
+    width: 400px;
     height: 800px;
     background-color: #1B1B1B;
     border: 1px solid #393939;
@@ -33,8 +33,8 @@
 {
     display: flex;
     flex-direction: column;
-    gap:25px;
-    width: 350px;
+    gap:10px;
+    width: 100%;
 }
 
 
@@ -45,7 +45,6 @@
 }
 
 .auth-fields input{
-    width: 200px;
     height: 35px;
     border-radius: 15px;
     font-size: 1rem;
@@ -62,15 +61,24 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin-top: 45px;
-    margin-bottom: 45px;
+    margin-bottom: 25px;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    padding-top: 25px;
+    border-top: 1px var(--selectableBorder) solid;
 }
 
-.buttons * :nth-child(1)
+.buttons p
 {
-    font-size: larger;
+    text-align: center;
+    font-size: medium;
+}
+
+.buttons a
+{
+    text-decoration: underline;
+    
 }
 
 .textarea:focus, input:focus{
@@ -82,7 +90,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 35px;
+    height: 25px;
+    margin: 10px;   
 }
 .error-msg-h1
 {
@@ -94,6 +103,6 @@
     background-color: rgb(95, 31, 31);
     border: 1px rgb(152, 69, 69) solid;
     border-radius: 10px;
-    height: 35px;
-    padding: 15px;
+    height: 25px;
+    padding: 5px;
 }

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from "react";
 import Modal from "../Modal/modal";
 import {motion , AnimatePresence } from "motion/react";
@@ -16,7 +17,9 @@ export default function Analyze({ name, time, note, onAfterClick }) {
                     <StickyNote2Icon  /> 
                 </div>
                 <div className="analyze-content">{`${name} | ${time}`}</div>
-                <div className="analyze-after" onClick={onAfterClick}></div>
+                <div className="analyze-after" onClick={onAfterClick}>
+                    <DeleteForeverIcon/>
+                </div>
             </div>
             <AnimatePresence
                 initial={false}

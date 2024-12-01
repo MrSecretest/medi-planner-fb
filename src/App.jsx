@@ -83,6 +83,7 @@ export default function Main() {
         {authView === "log_in" && (
           <LogIn
             handleCloseAuthView={handleCloseAuthView}
+            handleSignUpClick={handleSignUpClick}
           />
         )}
       </AnimatePresence>

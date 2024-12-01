@@ -49,9 +49,6 @@
     border-radius: 15px;
     font-size: larger;
     margin: 10px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     overflow: hidden;
     position: relative;
 }
@@ -81,7 +78,6 @@
 .analyze-after {
     right: 0;
     border-radius: 0px 15px 15px 0px;
-    background-image: url('../media/trash.png');
 }
 
 .analyze-content {

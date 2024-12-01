@@ -105,6 +105,7 @@ export default function Analyzes() {
           ...value,
         }));
         setNotesList(notesArray);
+        localStorage.setItem("notesArray", JSON.stringify(notesArray));
         return notesArray;
       } else {
         console.log("No notes found for this user.");
@@ -118,6 +119,8 @@ export default function Analyzes() {
   useEffect(() => {
     displayAnalyzes();
   }, []);
+
+
 
   const handleAddAnalyze = async () => {
     const userId = localStorage.getItem("userId");
@@ -158,26 +161,26 @@ export default function Analyzes() {
         <div className="analyze-centered">
           <AnimatePresence>
             {notesList.map((analyze) => (
-              <motion.div
-                layout
-                key={analyze.id}
-                initial={{ opacity: 0, scale: 0.8, y: -10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                transition={{ duration: 0.05 }}
-              >
-                <p style={{ textAlign: "center", padding: "2px", color: "var(--selectableBorder)" }}>
-                  {analyze.date}
-                </p>
+                <motion.div
+                  layout
+                  key={analyze.id}
+                  initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                  transition={{ duration: 0.05 }}
+                >
+                  <p style={{ textAlign: "center", padding: "2px", color: "var(--selectableBorder)" }}>
+                    {analyze.date}
+                  </p>
 
-                <Analyze
-                  name={analyze.dropdownValue}
-                  time={analyze.time}
-                  note={analyze.note}
-                  onAfterClick={() => deleteAnalyze(analyze.id)}
-                />
-              </motion.div>
-            ))}
+                  <Analyze
+                    name={analyze.dropdownValue}
+                    time={analyze.time}
+                    note={analyze.note}
+                    onAfterClick={() => deleteAnalyze(analyze.id)}
+                  />
+                </motion.div>
+              ))}
           </AnimatePresence>
         </div>
 
