@@ -17,11 +17,10 @@ export default function Modal({ handleClose, text }) {
             transition={{ duration: 0.1 }}
             >
             <div
-                
                 onClick={(e) => e.stopPropagation()}
                 className="modal-top"
             >
-                {text}
+                <p>{text}</p>
             </div>
             <div className="modal-bottom">
                 <CalendarButton onClick={handleClose}>

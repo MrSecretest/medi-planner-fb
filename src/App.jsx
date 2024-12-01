@@ -7,7 +7,7 @@ import SignUp from "./components/auth/sign_up";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef } from "react";
 export default function Main() {
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.removeItem("currentDate");
   }, [Main])
   const constraintsRef = useRef(null)
@@ -27,29 +27,29 @@ export default function Main() {
 
   return (
     <div className="main-analyzes-bg">
-      <motion.div  
-          initial={{y: -50}}
-          animate={{y:0}}
-          transition={{
-            type: "spring",
-            damping: 10,
-            mass: 0.75,
-            stiffness: 100
+      <motion.div
+        initial={{ y: -50 }}
+        animate={{ y: 0 }}
+        transition={{
+          type: "spring",
+          damping: 10,
+          mass: 0.75,
+          stiffness: 100
         }}
-          className="container-centered">
-        <motion.div 
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ type: "spring", stiffness: 600, damping: 10}}
-        whileDrag={{scale: 1.2} }
-        drag
-        dragConstraints={constraintsRef}        
-        className="images-container"
-        ref={constraintsRef}>
-          <motion.img 
-          transition={{duration:0.3}}
-          src={logo} width={152} alt="Logo" className="logo front-img" />
-          </motion.div>
+        className="container-centered">
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ type: "spring", stiffness: 600, damping: 10 }}
+          whileDrag={{ scale: 1.2 }}
+          drag
+          dragConstraints={constraintsRef}
+          className="images-container"
+          ref={constraintsRef}>
+          <motion.img
+            transition={{ duration: 0.3 }}
+            src={logo} width={152} alt="Logo" className="logo front-img" />
+        </motion.div>
 
         <div className="title-container">
           <p className="title-name" data-text="MediPlanner">
@@ -74,17 +74,17 @@ export default function Main() {
         </div>
       </motion.div>
       <AnimatePresence>
-      {authView === "sign_up" && (
+        {authView === "sign_up" && (
           <SignUp
             handleCloseAuthView={handleCloseAuthView}
             handleLogInClick={handleLogInClick}
           />
-      )}
-      {authView === "log_in" && (
-        <LogIn
-          handleCloseAuthView={handleCloseAuthView}
-        />
-      )}
+        )}
+        {authView === "log_in" && (
+          <LogIn
+            handleCloseAuthView={handleCloseAuthView}
+          />
+        )}
       </AnimatePresence>
     </div>
   );

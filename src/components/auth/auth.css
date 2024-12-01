@@ -15,8 +15,8 @@
 
 .auth-container
 {
-    width: 500px;
-    height: 650;
+    width: 450px;
+    height: 800px;
     background-color: #1B1B1B;
     border: 1px solid #393939;
     border-radius: 15px;
@@ -35,7 +35,6 @@
     flex-direction: column;
     gap:25px;
     width: 350px;
-
 }
 
 
@@ -63,8 +62,8 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin-top: 75px;
-    margin-bottom: 75px;
+    margin-top: 45px;
+    margin-bottom: 45px;
     justify-content: center;
     align-items: center;
 }

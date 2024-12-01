@@ -5,14 +5,15 @@ import { auth } from '../../firebase';
 import Button from '../button/button';
 import './auth.css';
 import logo from '../../media/logo.png';
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
+import { BounceLoader } from 'react-spinners';
 
 export default function Log_in({ handleCloseAuthView }) {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();  // Hook for navigation
-
+  const [currentlyLoading, setCurrentlyLoading] = useState(false);
   const userId = localStorage.getItem("userId");
 
   useEffect (() =>
@@ -26,6 +27,7 @@ export default function Log_in({ handleCloseAuthView }) {
 
   const handleLogIn = async () => {
     try {
+      setCurrentlyLoading(true);
       const userCredential = await signInWithEmailAndPassword(auth, email, pass);
       const user = userCredential.user;
       localStorage.setItem('userId', user.uid);
@@ -33,6 +35,7 @@ export default function Log_in({ handleCloseAuthView }) {
       navigate("/reminder");
     } catch (err) {
       setError(err.message);
+      setCurrentlyLoading(false);
     }
   };
 
@@ -60,9 +63,28 @@ export default function Log_in({ handleCloseAuthView }) {
               value={pass}
               onChange={(e) => setPass(e.target.value)}
             />
-            <div className="error-msg">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: currentlyLoading ? 1 : 0, scale: currentlyLoading ? 1 : 0.8 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              style={{
+                width: "100%",
+                height: "60px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <BounceLoader
+                speedMultiplier={2}
+                color="#5370BE"
+              />
+            </motion.div>
+            <motion.div className="error-msg"
+            animate={{ opacity: error!='' ? 1 : 0, scale: error!='' ? 1 : 0.8 }}>
               {error && <h1 className="error-msg-h1">{error}</h1>}
-            </div>
+            </motion.div>
             <div className="buttons">
               <Button type="secondary" onClick={handleLogIn}>
                 Proceed

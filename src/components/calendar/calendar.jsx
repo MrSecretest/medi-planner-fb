@@ -44,12 +44,12 @@ export default function Calendar() {
     <>
       <div className="calendar-box">
         <div className="date-part">
-          <CalendarButton onClick={() => changeMonth(-1)}>{"<"}</CalendarButton>
+          <CalendarButton onClick={() => changeMonth(-1)} type={'primary'}>{"<"}</CalendarButton>
           <div className="dates-container">
             <p>{monthNames[month]}</p>
             <p style={{ fontSize: "large", fontWeight: "300", color: "#C7C7C7" }}>{year}</p>
           </div>
-          <CalendarButton onClick={() => changeMonth(1)}>{">"}</CalendarButton>
+          <CalendarButton onClick={() => changeMonth(1)} type={'primary'}>{">"}</CalendarButton>
         </div>
         <div className="cells-part">
           {Array.from({ length: daysInMonth }, (_, i) => {

@@ -15,7 +15,7 @@ export default function Analyze({ name, time, note, onAfterClick }) {
                 <div className="analyze-before" onClick={() => (showNote ? close() : open())}>
                     <StickyNote2Icon  /> 
                 </div>
-                <div className="analyze-content">{`${name} at ${time}`}</div>
+                <div className="analyze-content">{`${name} | ${time}`}</div>
                 <div className="analyze-after" onClick={onAfterClick}></div>
             </div>
             <AnimatePresence

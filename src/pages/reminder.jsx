@@ -1,4 +1,3 @@
-import Button from "../components/button/button";
 import "../styles/dashboard.css";
 import Calendar from "../components/calendar/calendar";
 import Analyzes from "../components/analyzesSetter/analyzesSetter";
@@ -6,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import { getDoc, doc} from ".././firebase.js";
 import { motion } from "motion/react";
+import LogoutIcon from '@mui/icons-material/Logout';
+import CalendarButton from "../components/calendar/calendarButton.jsx";
 
 export default function Reminder() {
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ export default function Reminder() {
                 }}>
                 <Calendar />
                 <Analyzes />
-                <Button type="alert" onClick={signOut}>Log out</Button>
+                <CalendarButton type="alert" onClick={signOut}><LogoutIcon/></CalendarButton>
             </motion.div>
         </div>
     );

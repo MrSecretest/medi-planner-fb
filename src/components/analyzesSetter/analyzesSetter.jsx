@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Button from "../../components/button/button";
 import Analyze from "../../components/analyze/analyze";
 import "../../styles/analyzes.css";
-import { db, ref, set, get , remove} from "../../firebase.js";
+import { db, ref, set, get, remove } from "../../firebase.js";
 import { useNavigate } from "react-router-dom";
-import {motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function Analyzes() {
   const [note, setNote] = useState("");
@@ -14,57 +14,57 @@ export default function Analyzes() {
   const [notesList, setNotesList] = useState([]);
 
   const age18_25Tests = [
-    "Physical Exam", 
-    "CBC", 
-    "Blood Glucose", 
-    "Lipid Profile", 
-    "Dental Check-up", 
-    "Eye Exam", 
-    "STI Screening", 
-    "Pap Smear (Women)", 
-    "Skin Check", 
+    "Physical Exam",
+    "CBC",
+    "Blood Glucose",
+    "Lipid Profile",
+    "Dental Check-up",
+    "Eye Exam",
+    "STI Screening",
+    "Pap Smear (Women)",
+    "Skin Check",
     "Vaccinations (HPV, Tdap)"
   ];
   const age25_30Tests = [
-    "Physical Exam", 
-    "CBC", 
-    "Blood Glucose", 
-    "Lipid Profile", 
-    "Thyroid Test", 
-    "STI Screening", 
-    "Pap Smear", 
-    "Mental Health", 
-    "Bone Health", 
+    "Physical Exam",
+    "CBC",
+    "Blood Glucose",
+    "Lipid Profile",
+    "Thyroid Test",
+    "STI Screening",
+    "Pap Smear",
+    "Mental Health",
+    "Bone Health",
     "Lifestyle Assessment"
   ];
   const age30_45Tests = [
-    "Physical Exam", 
-    "Lipid Profile", 
-    "Blood Glucose", 
-    "Liver Function", 
-    "Cancer Screening (Mammogram/Prostate)", 
-    "Eye Exam", 
-    "Dental Check-up", 
-    "Pap Smear/HPV Test", 
-    "Mental Health", 
+    "Physical Exam",
+    "Lipid Profile",
+    "Blood Glucose",
+    "Liver Function",
+    "Cancer Screening (Mammogram/Prostate)",
+    "Eye Exam",
+    "Dental Check-up",
+    "Pap Smear/HPV Test",
+    "Mental Health",
     "Skin Cancer Screening"
   ];
   const age45_60Tests = [
-    "Physical Exam", 
-    "Lipid Profile", 
-    "Blood Glucose/HbA1c", 
-    "Kidney Function", 
-    "Colonoscopy", 
-    "Mammogram", 
-    "PSA Test (Men)", 
-    "Bone Density Scan", 
-    "Vision and Hearing Tests", 
-    "Vaccinations (Shingles/Flu/Pneumonia)", 
-    "Heart Screening (ECG/Stress Test)", 
-    "Mental Health", 
+    "Physical Exam",
+    "Lipid Profile",
+    "Blood Glucose/HbA1c",
+    "Kidney Function",
+    "Colonoscopy",
+    "Mammogram",
+    "PSA Test (Men)",
+    "Bone Density Scan",
+    "Vision and Hearing Tests",
+    "Vaccinations (Shingles/Flu/Pneumonia)",
+    "Heart Screening (ECG/Stress Test)",
+    "Mental Health",
     "Weight and Nutrition"
   ];
-        
+
   const deleteAnalyze = async (analyzeId) => {
     const userId = localStorage.getItem("userId");
 
@@ -77,14 +77,14 @@ export default function Analyzes() {
       await remove(analyzeRef);
 
       setNotesList((prevNotes) => prevNotes.filter((note) => note.id !== analyzeId));
-      
+
     } catch (error) {
       console.error("Error deleting analyze: ", error);
       alert("Failed to delete analyze. Please try again.");
     }
   };
 
-  
+
   const displayAnalyzes = async () => {
     const userId = localStorage.getItem("userId");
     const user = JSON.parse(localStorage.getItem("user"));
@@ -95,11 +95,11 @@ export default function Analyzes() {
     try {
       const userNotesRef = ref(db, `users/${userId}/notes`);
       const snapshot = await get(userNotesRef);
-  
+
       if (snapshot.exists()) {
         const notes = snapshot.val();
         console.log("Fetched notes:", notes);
-  
+
         const notesArray = Object.entries(notes).map(([key, value]) => ({
           id: key,
           ...value,
@@ -114,7 +114,7 @@ export default function Analyzes() {
       console.error("Error fetching notes:", e);
     }
   };
-  
+
   useEffect(() => {
     displayAnalyzes();
   }, []);
@@ -128,7 +128,7 @@ export default function Analyzes() {
     }
     try {
       const newNoteRef = ref(db, `users/${userId}/notes/${Date.now()}`);
-      if (dropdownValue != "" && time != ""){
+      if (dropdownValue != "" && time != "") {
         await set(newNoteRef, {
           note,
           dropdownValue,
@@ -140,7 +140,7 @@ export default function Analyzes() {
         setDropdownValue("");
         setTime("");
       }
-      
+
     } catch (e) {
       console.error("Error adding document: ", e);
       alert(e);
@@ -153,12 +153,12 @@ export default function Analyzes() {
       <p style={{ fontSize: "larger", padding: "10px", width: "100%", textAlign: "center", borderBottom: "1px solid var(--selectableBorder)" }}>
         Analyzes list:
       </p>
-      
+
       <div className="analyzes-container">
-          <div className="analyze-centered">
+        <div className="analyze-centered">
           <AnimatePresence>
             {notesList.map((analyze) => (
-                <motion.div
+              <motion.div
                 layout
                 key={analyze.id}
                 initial={{ opacity: 0, scale: 0.8, y: -10 }}
@@ -167,14 +167,14 @@ export default function Analyzes() {
                 transition={{ duration: 0.05 }}
               >
                 <p style={{ textAlign: "center", padding: "2px", color: "var(--selectableBorder)" }}>
-                  {analyze.date.replaceAll(',', '.')}
+                  {analyze.date}
                 </p>
-                
+
                 <Analyze
                   name={analyze.dropdownValue}
                   time={analyze.time}
                   note={analyze.note}
-                  onAfterClick={() => deleteAnalyze(analyze.id)} // Pass the analyze ID to delete
+                  onAfterClick={() => deleteAnalyze(analyze.id)}
                 />
               </motion.div>
             ))}
@@ -186,85 +186,79 @@ export default function Analyzes() {
         <p style={{ fontSize: "larger", padding: "10px", width: "100%", textAlign: "center", borderBottom: "1px solid var(--selectableBorder)" }}>
           Add new analyze to selected day:
         </p>
-        <input 
-          type="text" 
-          className="note" 
+        <input
+          type="text"
+          className="note"
           placeholder="Add a note for selected day here (optional)"
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
       </div>
       <div className="bottom-container">
-        <select 
+        <select
           className="dropdown"
           value={dropdownValue}
           onChange={(e) => setDropdownValue(e.target.value)}
         >
           <option value="">Choose your check-up</option>
           <optgroup label="Age 18–25">
-            <option value="Physical Exam">Physical Exam</option>
-            <option value="CBC">CBC</option>
-            <option value="Blood Glucose">Blood Glucose</option>
-            <option value="Lipid Profile">Lipid Profile</option>
-            <option value="Dental Check-up">Dental Check-up</option>
-            <option value="Eye Exam">Eye Exam</option>
-            <option value="STI Screening">STI Screening</option>
-            <option value="Pap Smear (Women)">Pap Smear (Women)</option>
-            <option value="Skin Check">Skin Check</option>
-            <option value="Vaccinations (HPV, Tdap)">Vaccinations (HPV, Tdap)</option>
+            <option value="CBC (Blood Test)">CBC (Blood Test)</option>
+            <option value="Urine Analysis">Urine Analysis</option>
+            <option value="Cholesterol Test">Cholesterol Test</option>
+            <option value="HIV Test">HIV Test</option>
+            <option value="Hepatitis B/C Test">Hepatitis B/C Test</option>
+            <option value="Skin Allergy Test">Skin Allergy Test</option>
           </optgroup>
-
           <optgroup label="Age 25–30">
-            <option value="Physical Exam">Physical Exam</option>
             <option value="CBC">CBC</option>
-            <option value="Blood Glucose">Blood Glucose</option>
-            <option value="Lipid Profile">Lipid Profile</option>
-            <option value="Thyroid Test">Thyroid Test</option>
-            <option value="STI Screening">STI Screening</option>
-            <option value="Pap Smear">Pap Smear</option>
-            <option value="Mental Health">Mental Health</option>
-            <option value="Bone Health">Bone Health</option>
-            <option value="Lifestyle Assessment">Lifestyle Assessment</option>
+            <option value="Urine Analysis">Urine Analysis</option>
+            <option value="Blood Sugar">Blood Sugar</option>
+            <option value="Cholesterol">Cholesterol</option>
+            <option value="PAP Test (Women)">PAP Test (Women)</option>
+            <option value="ECG (Heart Check)">ECG (Heart Check)</option>
           </optgroup>
-
-          <optgroup label="Age 30–45">
-            <option value="Physical Exam">Physical Exam</option>
-            <option value="Lipid Profile">Lipid Profile</option>
-            <option value="Blood Glucose">Blood Glucose</option>
-            <option value="Liver Function">Liver Function</option>
-            <option value="Cancer Screening (Mammogram/Prostate)">Cancer Screening (Mammogram/Prostate)</option>
-            <option value="Eye Exam">Eye Exam</option>
-            <option value="Dental Check-up">Dental Check-up</option>
-            <option value="Pap Smear/HPV Test">Pap Smear/HPV Test</option>
-            <option value="Mental Health">Mental Health</option>
-            <option value="Skin Cancer Screening">Skin Cancer Screening</option>
+          <optgroup label="Age 30–40">
+            <option value="CBC">CBC</option>
+            <option value="Cholesterol">Cholesterol</option>
+            <option value="Blood Sugar">Blood Sugar</option>
+            <option value="Hormones">Hormones</option>
+            <option value="Mammography">Mammography</option>
+            <option value="Dermatology Check">Dermatology Check</option>
           </optgroup>
-
-          <optgroup label="Age 45–60">
-            <option value="Physical Exam">Physical Exam</option>
-            <option value="Lipid Profile">Lipid Profile</option>
-            <option value="Blood Glucose/HbA1c">Blood Glucose/HbA1c</option>
-            <option value="Kidney Function">Kidney Function</option>
+          <optgroup label="Age 40–50">
+            <option value="CBC">CBC</option>
             <option value="Colonoscopy">Colonoscopy</option>
-            <option value="Mammogram">Mammogram</option>
-            <option value="PSA Test (Men)">PSA Test (Men)</option>
-            <option value="Bone Density Scan">Bone Density Scan</option>
-            <option value="Vision and Hearing Tests">Vision and Hearing Tests</option>
-            <option value="Vaccinations (Shingles/Flu/Pneumonia)">Vaccinations (Shingles/Flu/Pneumonia)</option>
-            <option value="Heart Screening (ECG/Stress Test)">Heart Screening (ECG/Stress Test)</option>
-            <option value="Mental Health">Mental Health</option>
-            <option value="Weight and Nutrition">Weight and Nutrition</option>
+            <option value="Mammography">Mammography</option>
+            <option value="Blood Sugar">Blood Sugar</option>
+            <option value="ECG">ECG</option>
+            <option value="Skin Check">Skin Check</option>
           </optgroup>
+          <optgroup label="Age 50–60">
+            <option value="CBC">CBC</option>
+            <option value="Colonoscopy">Colonoscopy</option>
+            <option value="Mammography">Mammography</option>
+            <option value="Osteoporosis Test">Osteoporosis Test</option>
+            <option value="Diabetes Test">Diabetes Test</option>
+          </optgroup>
+          <optgroup label="Age 70–90">
+            <option value="CBC">CBC</option>
+            <option value="Colonoscopy">Colonoscopy</option>
+            <option value="Mammography">Mammography</option>
+            <option value="Heart Check">Heart Check</option>
+            <option value="Cognition Check">Cognition Check</option>
+            <option value="Osteoporosis">Osteoporosis</option>
+          </optgroup>
+
 
         </select>
-        <input 
-          className="time-setter" 
-          type="time" 
-          id="appt" 
-          name="appt" 
-          min="09:00" 
-          max="18:00" 
-          required 
+        <input
+          className="time-setter"
+          type="time"
+          id="appt"
+          name="appt"
+          min="09:00"
+          max="18:00"
+          required
           value={time}
           onChange={(e) => setTime(e.target.value)}
         />

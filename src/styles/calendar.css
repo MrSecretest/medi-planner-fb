@@ -80,3 +80,53 @@
     background-color:#627abe;
 
 }
+
+.calendar-button-primary
+{
+    background-color: var(--lighterBG);
+}
+
+.calendar-button-primary:hover
+{
+    background-color: var(--selectableBorder); 
+    border: 1px solid var(--selectableBorder);
+}
+
+.calendar-button-secondary
+{
+    background-color: #252e46;
+    border: 1px solid #3b445e;
+}
+.calendar-button-primary:active
+{
+    background-color: #474747; 
+    border: 1px solid var(--selectableBorder);
+}
+.calendar-button-secondary:hover
+{
+    background-color: #5370be;
+    border: 1px solid #5370be;
+}
+.calendar-button-secondary:active
+{
+    background-color: #627abe; 
+    border: 1px solid #627abe;
+}
+
+.calendar-button-red
+{
+    background-color: rgb(33, 22, 22);
+    border: 1px solid #5f3a3a;
+}
+
+.calendar-button-red:hover
+{
+    background-color: #5f3a3a;
+    border: 1px solid #5f3a3a;
+}
+
+.calendar-button-red:active
+{
+    background-color: #7c5252;
+    border: 1px solid #7c5252;
+}
