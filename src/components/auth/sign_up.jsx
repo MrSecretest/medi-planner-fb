@@ -2,6 +2,7 @@ import './auth.css'
 import logo from '../../media/logo.png';
 import Button from '../button/button';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { motion } from 'motion/react';
@@ -14,6 +15,7 @@ export default function Sign_up({ handleCloseAuthView, handleLogInClick }) {
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
     const [currentlyLoading, setCurrentlyLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSignUp = async () => {
         try {
@@ -32,7 +34,6 @@ export default function Sign_up({ handleCloseAuthView, handleLogInClick }) {
           const result = await signInWithPopup(auth, provider);
           const user = result.user;
           localStorage.setItem('userId', user.uid);
-          handleCloseAuthView();
           navigate('/reminder');
         } catch (err) {
           setError(err.message);
@@ -85,9 +86,12 @@ export default function Sign_up({ handleCloseAuthView, handleLogInClick }) {
                         {error && <h1 className="error-msg-h1">{error}</h1>}
                     </motion.div>
                     <div className="buttons">
-                        <CalendarButton type="primary" onClick={handleGoogleSignIn}>
-                            <GoogleIcon />
-                        </CalendarButton>
+                    <CalendarButton 
+                        type="primary" 
+                        onClick={handleGoogleSignIn}>
+                        <GoogleIcon />
+                    </CalendarButton>
+
                         <Button type="secondary" onClick={handleSignUp}>
                             Proceed
                         </Button>

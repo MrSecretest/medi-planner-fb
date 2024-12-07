@@ -16,9 +16,17 @@ export default function CalendarButton({children, type, onClick }) {
             setButtonClass('calendar-button-red')
         }
         })
-    return (
-        <button onClick={onClick} className={`calendar-button ${ButtonClass}`}>
-            {children}
-        </button>
-    );
+        return (
+            <button 
+                type="button" // Ensures it doesn’t act as a submit button
+                onClick={(e) => {
+                    e.preventDefault();
+                    onClick && onClick(e);
+                }} 
+                className={`calendar-button ${ButtonClass}`}
+            >
+                {children}
+            </button>
+        );
+        
 }

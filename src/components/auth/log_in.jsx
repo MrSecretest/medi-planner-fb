@@ -14,13 +14,13 @@ export default function Log_in({ handleCloseAuthView, handleSignUpClick }) {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();  // Hook for navigation
+  const navigate = useNavigate();
   const [currentlyLoading, setCurrentlyLoading] = useState(false);
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     if (userId) {
-      navigate('/reminder');
+      localStorage.clear("userId")
     }
   }, [userId, navigate]);
 

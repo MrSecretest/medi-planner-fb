@@ -87,8 +87,7 @@ export default function Analyzes() {
 
   const displayAnalyzes = async () => {
     const userId = localStorage.getItem("userId");
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
+    if (!userId) {
       navigate("/");
       return;
     }
@@ -124,8 +123,7 @@ export default function Analyzes() {
 
   const handleAddAnalyze = async () => {
     const userId = localStorage.getItem("userId");
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
+    if (!userId) {
       navigate("/");
       return;
     }
