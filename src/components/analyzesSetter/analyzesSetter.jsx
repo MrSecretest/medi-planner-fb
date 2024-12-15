@@ -12,6 +12,7 @@ export default function Analyzes() {
   const [time, setTime] = useState("");
   const navigate = useNavigate();
   const [notesList, setNotesList] = useState([]);
+  const notify = () => toast("This is a toast notification!");
 
   const age18_25Tests = [
     "Physical Exam",
@@ -77,7 +78,6 @@ export default function Analyzes() {
       await remove(analyzeRef);
 
       setNotesList((prevNotes) => prevNotes.filter((note) => note.id !== analyzeId));
-
     } catch (error) {
       console.error("Error deleting analyze: ", error);
       alert("Failed to delete analyze. Please try again.");

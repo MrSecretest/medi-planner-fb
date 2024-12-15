@@ -74,6 +74,14 @@ export default function Main() {
         </div>
       </motion.div>
       <AnimatePresence>
+      {(authView === "sign_up" || authView === "log_in") && (
+        <motion.div 
+        initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="blurred-background"></motion.div>
+      )}
         {authView === "sign_up" && (
           <SignUp
             handleCloseAuthView={handleCloseAuthView}

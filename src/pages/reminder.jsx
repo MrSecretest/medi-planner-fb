@@ -41,6 +41,8 @@ export default function Reminder() {
     navigate("/");
   };
 
+  
+
   return (
     <div className="box-container">
       <motion.div

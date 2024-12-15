@@ -45,6 +45,6 @@ Analyze.defaultProps = {
 Analyze.propTypes = {
     name: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-    note: PropTypes.string.isRequired,  // Ensure note is required and passed
+    note: PropTypes.string.isRequired,
     onAfterClick: PropTypes.func,
 };

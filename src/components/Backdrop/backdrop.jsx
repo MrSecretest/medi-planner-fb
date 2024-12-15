@@ -8,7 +8,7 @@ export default function Backdrop({ children, onclick }) {
             initial={{ opacity: 0, backdropFilter: "blur(0px)"}}
             animate={{ opacity: 1, backdropFilter: "blur(5px)"}}
             exit={{ opacity: 0, backdropFilter: "blur(0px)"}}
-            transition={{ duration: 0.1 }}
+            transition={{ duration: 0.3 }}
             layout
         >
             {children}

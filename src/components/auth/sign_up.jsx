@@ -46,7 +46,7 @@ export default function Sign_up({ handleCloseAuthView, handleLogInClick }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.1 }}>
+            transition={{ duration: 0.3 }}>
             <div className='auth-container'>
                 <img src={logo} width={100} alt="Logo" />
                 <form className='auth-fields'>
