@@ -1,8 +1,7 @@
-
 .calendar-box
 {
     width: fit-content;
-    height: 500px;
+    height: fit-content;
     background-color: var(--calendarBG);
     border-radius: 15px;
     border: 1px solid var(--selectableBorder);
@@ -31,8 +30,8 @@
 
 .cells
 {
-    width: 64px;
-    height: 64px;
+    width: clamp(24px, 10vw, 64px);
+    height: clamp(24px, 10vw, 64px);
     border-radius: 15px;
     background-color: var(--cells);
     border: 1px solid var(--cellsborder);
@@ -60,6 +59,7 @@
 
 .calendar-button
 {
+    color: #b7b7b7e1;
     background-color: var(--cells);
     border: 1px solid var(--cellsborder);
     border-radius: 15px;

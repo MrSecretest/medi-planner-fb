@@ -1,6 +1,6 @@
 .analyzes-setter
 {
-    width: fit-content;
+    width: clamp(320px, 90vw, 700px);
     height: 800px;
     background-color: var(--calendarBG);
     border-radius: 15px;
@@ -21,7 +21,7 @@
     background-color: var(--cells);
     border: 1px solid var(--cellsborder);
     margin: 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #171717e1;
     border-radius: 15px;
 }
@@ -37,7 +37,7 @@
 
 
 .analyze {
-    width: 360px;
+    width: clamp(200px, 90vw, 360px);
     height: 55px;
     text-align: center;
     display: flex;
@@ -47,7 +47,7 @@
     background-color: #1F1F1F;
     border: 1px solid #272727;
     border-radius: 15px;
-    font-size: larger;
+    font-size: medium;
     margin: 10px;
     overflow: hidden;
     position: relative;
@@ -73,6 +73,27 @@
 .analyze-before {
     left: 0;
     border-radius: 15px 0px 0px 15px;
+}
+
+.analyze-before-deactivated
+{
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f1f1f;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.1s ease;
+    position: absolute;
+    left: 0;
+    border-radius: 15px 0px 0px 15px;
+}
+
+.analyze-before-deactivated img{
+    width: 30px;
 }
 
 .analyze-after {
@@ -106,7 +127,7 @@
 
 .note
 {
-    width: 505px;
+    width: clamp(100px, 80%, 500px);
     height: 36px;
     background-color: var(--cells);
     border-radius: 15px;
@@ -120,14 +141,20 @@
 }
 
 
-.bottom-container
-{
+.bottom-container {
     display: flex;
     justify-content: space-evenly;
-    flex-direction: row;
-    gap:15px;
+    gap: 15px;
     padding: 15px;
     align-items: center;
+    flex-direction: row;
+    color: #ffffff;
+}
+
+@media (max-width: 650px) {
+    .bottom-container {
+        flex-direction: column; 
+    }
 }
 
 .time-setter {
@@ -176,4 +203,10 @@
     width: 500px;
     height: 350px;
     z-index: 1000;
+}
+
+
+.section-header
+{
+    padding-top: 10px;
 }

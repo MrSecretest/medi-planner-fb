@@ -119,6 +119,7 @@
     font-size: 18px;
     width: 400px;
     margin: 10px auto 0px auto;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .title-span {
@@ -136,6 +137,7 @@
     gap: 30px;
     justify-content: center;
     margin-top: 45px;
+    padding: 0px 10px 0px 10px;
 }
 
 .blurred-background {

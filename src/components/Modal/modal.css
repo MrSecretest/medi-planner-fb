@@ -1,27 +1,29 @@
 .modal{
-    width: 630px    ;
+    width: 70%    ;
     height: min(50%, 300px);
     border: 1px #393939 solid;
-    margin:auto;
+    margin: auto;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--calendarBG);
     justify-content: space-between;
+    padding: 15px;
 }
 
 .modal-top {
     height: 95%;
     padding: 15px;
-    width: 500px;
-    overflow-y: auto; /* Ensures scrolling if content exceeds height */
+    width: 90%;
+    overflow-y: auto;
 }
 
 .modal-top p {
-    word-wrap: break-word; /* Wraps long words that might overflow */
-    white-space: normal;  /* Ensures text wraps normally */
-    width: 100%; /* Ensures the <p> takes up the full width of the container */
+    word-wrap: break-word;
+    white-space: normal;
+    width: 100%;
+    margin-top: 25px;
 }
 
 

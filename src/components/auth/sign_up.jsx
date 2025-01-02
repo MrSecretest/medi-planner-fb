@@ -33,7 +33,6 @@ export default function Sign_up({ handleCloseAuthView, handleLogInClick }) {
           const provider = new GoogleAuthProvider();
           const result = await signInWithPopup(auth, provider);
           const user = result.user;
-          localStorage.setItem('userId', user.uid);
           navigate('/reminder');
         } catch (err) {
           setError(err.message);

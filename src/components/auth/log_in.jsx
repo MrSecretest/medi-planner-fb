@@ -16,13 +16,6 @@ export default function Log_in({ handleCloseAuthView, handleSignUpClick }) {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const [currentlyLoading, setCurrentlyLoading] = useState(false);
-  const userId = localStorage.getItem('userId');
-
-  useEffect(() => {
-    if (userId) {
-      localStorage.clear("userId")
-    }
-  }, [userId, navigate]);
 
   const handleLogIn = async () => {
     try {
@@ -34,6 +27,7 @@ export default function Log_in({ handleCloseAuthView, handleSignUpClick }) {
       navigate('/reminder');
     } catch (err) {
       setError(err.message);
+    } finally {
       setCurrentlyLoading(false);
     }
   };
