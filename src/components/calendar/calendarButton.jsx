@@ -18,7 +18,7 @@ export default function CalendarButton({children, type, onClick }) {
         })
         return (
             <button 
-                type="button" // Ensures it doesn’t act as a submit button
+                type="button"
                 onClick={(e) => {
                     e.preventDefault();
                     onClick && onClick(e);

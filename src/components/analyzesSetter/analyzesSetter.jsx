@@ -5,6 +5,7 @@ import "../../styles/analyzes.css";
 import { db, ref, set, get, remove } from "../../firebase.js";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
+import Calendar from "../../components/calendar/calendar.jsx"
 
 export default function Analyzes() {
   const [note, setNote] = useState("");
@@ -23,13 +24,13 @@ export default function Analyzes() {
       "Pap Smear", "Mental Health", "Bone Health", "Lifestyle Assessment"
     ],
     "30-45": [
-      "Physical Exam", "Lipid Profile", "Blood Glucose", "Liver Function", "Cancer Screening (Mammogram/Prostate)",
+      "Physical Exam", "Lipid Profile", "Blood Glucose", "Liver Function", "Cancer Screening",
       "Eye Exam", "Dental Check-up", "Pap Smear/HPV Test", "Mental Health", "Skin Cancer Screening"
     ],
     "45-60": [
       "Physical Exam", "Lipid Profile", "Blood Glucose/HbA1c", "Kidney Function", "Colonoscopy",
       "Mammogram", "PSA Test (Men)", "Bone Density Scan", "Vision and Hearing Tests",
-      "Vaccinations (Shingles/Flu/Pneumonia)", "Heart Screening (ECG/Stress Test)", "Mental Health", "Weight and Nutrition"
+      "Vaccinations", "Heart Screening", "Mental Health", "Weight and Nutrition"
     ]
   };
 
@@ -71,9 +72,15 @@ export default function Analyzes() {
   }, []);
 
   const displayAnalyzes = async () => {
-    await handleFirebaseOperation("get", "");
+    const analyzes = await handleFirebaseOperation("get", "");
+    
+    if (analyzes) {
+      analyzes.forEach((analyze) => {
+        console.log(`Analyze date: ${analyze.date}`);
+      });
+    }
   };
-
+  
   const handleAddAnalyze = async () => {
     if (!dropdownValue || !time) {
       alert("Please fill in all fields.");
@@ -93,9 +100,10 @@ export default function Analyzes() {
   };
 
   return (
-    <div className="analyzes-setter">
+    <>
+      <Calendar analyzeDates={notesList.map((analyze) => analyze.date)} />
+      <div className="analyzes-setter">
       <p className="section-header">Analyzes list:</p>
-
       <div className="analyzes-container">
         <div className="analyze-centered">
           <AnimatePresence>
@@ -163,5 +171,6 @@ export default function Analyzes() {
         <Button type="secondary" onClick={handleAddAnalyze}>Add</Button>
       </div>
     </div>
+    </>
   );
 }

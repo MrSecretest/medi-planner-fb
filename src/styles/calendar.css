@@ -26,6 +26,7 @@
     margin-top: 10px;
     text-align: center;
     padding: 15px;
+    transition: 300ms;
 }
 
 .cells
@@ -129,4 +130,15 @@
 {
     background-color: #7c5252;
     border: 1px solid #7c5252;
+}
+
+.cells.highlighted {
+    background-color: #555555;
+}
+
+.cells.highlighted:hover{
+    background-color: #676767;
+}
+.cells.highlighted:active{
+    background-color: #627abe;
 }

@@ -26,7 +26,7 @@ export default function Log_in({ handleCloseAuthView, handleSignUpClick }) {
       handleCloseAuthView();
       navigate('/reminder');
     } catch (err) {
-      setError(err.message);
+      setError(err.message.slice(10, -1));
     } finally {
       setCurrentlyLoading(false);
     }

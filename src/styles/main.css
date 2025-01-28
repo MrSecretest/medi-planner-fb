@@ -1,6 +1,6 @@
 .main-analyzes-bg {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: var(--darkBG);
     background-image: radial-gradient(#363636 1px, #121212 1px);
     background-size: 60px 60px;
@@ -24,10 +24,19 @@
 .container-centered {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-top: 8rem;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-top: 125px;
+    padding-bottom: 25px;
+    min-height: calc(100vh - 150px);
     text-align: center;
 }
+
+.container-centered::after {
+    content: "";
+    flex-grow: 1;
+}
+
 
 .images-container {
     width: auto;
@@ -106,21 +115,20 @@
     100% {
         width: 0;
     }
-
     70%,
     90% {
         width: 100%;
     }
 }
 
-
-
 .title-p {
-    font-size: 18px;
-    width: 400px;
+    font-size: clamp(16px, 1vw, 48px);
+    width: 450px;
     margin: 10px auto 0px auto;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+
 
 .title-span {
     font-weight: 700;
@@ -137,7 +145,7 @@
     gap: 30px;
     justify-content: center;
     margin-top: 45px;
-    padding: 0px 10px 0px 10px;
+    padding: 0px 10px;
 }
 
 .blurred-background {
@@ -150,3 +158,24 @@
     backdrop-filter:blur(10px);
     z-index: 1;
   }
+
+  @media (max-width: 768px)
+{
+    .title-p{
+        width: 85vw;
+    }
+    .button-cont
+    {
+        font-size: small;
+    }
+    .container-centered {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 10px;
+        padding-top: 200px;
+        padding-bottom: 25px;
+        min-height: calc(100vh - 225px);
+        text-align: center;
+    }
+}

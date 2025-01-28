@@ -23,7 +23,7 @@ export default function Sign_up({ handleCloseAuthView, handleLogInClick }) {
             await createUserWithEmailAndPassword(auth, email, pass);
             handleLogInClick();
         } catch (err) {
-            setError(err.message);
+            setError(err.message.slice(10, -1));
             setCurrentlyLoading(false);
         }
     };

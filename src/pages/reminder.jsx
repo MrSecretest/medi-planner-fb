@@ -1,5 +1,4 @@
 import "../styles/dashboard.css";
-import Calendar from "../components/calendar/calendar";
 import Analyzes from "../components/analyzesSetter/analyzesSetter";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -59,7 +58,6 @@ export default function Reminder() {
           stiffness: 100,
         }}
       >
-        <Calendar />
         <Analyzes />
         <CalendarButton type="alert" onClick={signOut}>
           <LogoutIcon />

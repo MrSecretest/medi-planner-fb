@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../../styles/calendar.css";
 import CalendarButton from "./calendarButton";
 
-export default function Calendar() {
+export default function Calendar({ analyzeDates }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(1);
 
@@ -40,6 +40,12 @@ export default function Calendar() {
     console.log(`Default selected date: ${formattedDate}`);
   }, [currentDate]);
 
+  const isAnalyzeDate = (day) => {
+    const formattedDate = `${day}/${month + 1}/${year}`;
+    return analyzeDates.includes(formattedDate);
+  };
+
+  
   return (
     <>
       <div className="calendar-box">
@@ -58,7 +64,7 @@ export default function Calendar() {
               <div
                 onClick={() => handleDayClick(day)}
                 key={day}
-                className={`cells ${selectedDay === day ? "selected" : ""}`}
+                className={`cells ${selectedDay === day ? "selected" : isAnalyzeDate(day) ? "highlighted" : ""}`}
               >
                 {day}
               </div>
