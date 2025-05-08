@@ -38,7 +38,7 @@ export default function Reminder() {
   const signOut = async () => {
     try {
       await auth.signOut();
-      navigate("/");
+      navigate("/medi-planner-fb/");
     } catch (error) {
       console.error("Error signing out:", error);
     }

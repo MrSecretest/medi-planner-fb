@@ -24,7 +24,7 @@ export default function Log_in({ handleCloseAuthView, handleSignUpClick }) {
       const user = userCredential.user;
       localStorage.setItem('userId', user.uid);
       handleCloseAuthView();
-      navigate('/reminder');
+      navigate('/medi-planner-fb/reminder');
     } catch (err) {
       setError(err.message.slice(10, -1));
     } finally {
@@ -39,7 +39,7 @@ export default function Log_in({ handleCloseAuthView, handleSignUpClick }) {
       const user = result.user;
       localStorage.setItem('userId', user.uid);
       handleCloseAuthView();
-      navigate('/reminder');
+      navigate('/medi-planner-fb/reminder');
     } catch (err) {
       setError(err.message);
     }
