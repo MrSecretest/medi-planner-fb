@@ -9,8 +9,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/reminder" element={<Reminder />} />
+        <Route path="/medi-planner-fb/" element={<App />} />
+        <Route path="/medi-planner-fb/reminder" element={<Reminder />} />
       </Routes>
     </Router>
   </StrictMode>,
